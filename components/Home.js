@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View, Image, ScrollView, ActivityIndicator } from 'react-native';
-import { Container, Content, Footer, FooterTab, Button, Icon, Text } from 'native-base';
+import { Button, Icon, Text } from 'native-base';
 import axios from 'axios';
 import style from './../style/Styles';
 import QuoteDetail from './QuoteDetail';

@@ -3,7 +3,7 @@ import { View, Image, AsyncStorage} from 'react-native';
 import { Icon, Text, Button} from 'native-base';
 import style from './../style/Styles';
 
-const QuotePlainText = (text) => {
+const quotePlainText = (text) => {
 	return text
 			.replace(/<[^>]+>/gm, '')
 			.replace(/&nbsp;/g, ' ')
@@ -49,7 +49,7 @@ const saveQuote = async(quote) => {
 		id: quote.id,
 		thumbnail: quote.thumbnail,
 		title: quote.title.rendered,
-		text: QuotePlainText(quote.content.rendered),
+		text: quotePlainText(quote.content.rendered),
 		author: quote.author
 	}];
 
@@ -84,12 +84,12 @@ const saveQuote = async(quote) => {
 	}
 }
 
-const QuoteDetail = ({quote}) =>  {
+const quoteDetail = ({quote}) =>  {
 	return(
 		<View style={[ style.quoteContainer , themeStyle(quote.theme)]}>
 			<Image source={{ uri: QuoteImage(quote.thumbnail) }} style={style.thumbnail}/>
 			<Text style={style.quoteTitle}>{quote.title.rendered}</Text>
-			<Text style={style.quoteText}>{QuotePlainText(quote.content.rendered)}</Text>
+			<Text style={style.quoteText}>{quotePlainText(quote.content.rendered)}</Text>
 			<View style={{ marginTop: 10, alignItems: 'center'}}>
 				<Button
 				rounded
@@ -105,4 +105,4 @@ const QuoteDetail = ({quote}) =>  {
 	);
 };
 
-export default QuoteDetail;
+export default quoteDetail;
