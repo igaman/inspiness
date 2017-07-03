@@ -34,13 +34,33 @@ export default  {
 		paddingTop: 30,
 	},
 	favorisQuote: {
-		margin: 20
+		margin: 0,
+		padding: 15,
+		flex: 1, 
+		flexDirection: 'row',
+		borderBottomWidth: 1,
+		borderBottomColor: '#dadada',
+	},
+	favorisButton: {
+		marginBottom: 0,
+	},
+	favorisImage: {
+		flex: 1
+	},
+	favorisContent: {
+		flex: 4
 	},
 	thumbnail: {
 		width: 150,
 		height: 150,
 		borderRadius: 100,
 		marginBottom: 20,
+	},
+	thumbnailMini: {
+		width: 50,
+		height: 50,
+		borderRadius: 100,
+		marginBottom: 10,
 	},
 	quoteTitle: {
 		fontFamily: 'Oswald-Regular',
@@ -62,6 +82,12 @@ export default  {
 		textShadowOffset:{ width: 1, height: 1},
 		textShadowRadius: 2,
 	},
+	quoteTextMini: {
+		fontFamily: 'Oswald-Regular',
+		color:'#484848',
+		fontSize:16,
+		marginBottom:20,
+	},
 	quoteAuthor: {
 		fontFamily: 'Oswald-Regular',
 		fontSize: 20,
@@ -70,6 +96,11 @@ export default  {
 		textShadowColor: '#616161',
 		textShadowOffset:{ width: 1, height: 1},
 		textShadowRadius: 2
+	},
+	quoteAuthorMini: {
+		fontFamily: 'Oswald-Medium',
+		color:'#484848',
+		fontSize:16,
 	},
 	spirituality: {
 		backgroundColor: '#663d5b'

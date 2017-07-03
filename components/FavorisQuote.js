@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, AsyncStorage } from 'react-native';
+import { View, Image, AsyncStorage, Alert } from 'react-native';
 import { Icon, Text, Button} from 'native-base';
 import style from './../style/Styles';
 
@@ -30,16 +30,31 @@ export default class FavorisQuote extends Component {
 		}
 	}
 
+	attention = (quote) => {
+		Alert.alert(
+			'Attention',
+			'Êtes-vous sûr de vouloir supprimer ?',
+			[
+			{text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+			{text: 'OK', onPress: () => this.deleteQuote(quote)},
+			]
+		)
+	}
+
 	render(){
 		const {id, author, thumbnail, text} = this.props.quote;
 		return(
 			<View id={id} style={style.favorisQuote}>
-				<Image source={{ uri: this.quoteImage(thumbnail) }} style={style.thumbnail}/>
-				<Text>{text}</Text>
-				<Text>{author}</Text>
-				<Button rounded dark onPress={() => this.deleteQuote(this.props.quote)}>
-					<Text>Delete</Text>
-				</Button>
+				<View style={style.favorisImage}>
+					<Image source={{ uri: this.quoteImage(thumbnail) }} style={style.thumbnailMini}/>
+					<Button style={style.favorisButton} rounded dark onPress={() => this.attention(this.props.quote)}>
+						<Text>D</Text>
+					</Button>
+				</View>
+				<View style={style.favorisContent}>
+					<Text style={style.quoteTextMini}>{text}</Text>
+					<Text style={style.quoteAuthorMini}> ─ {author} ─ </Text>
+				</View>
 			</View>
 		);
 	};

@@ -14,11 +14,6 @@ class Favoris extends Component {
 
 	loadText = () => {
 		if(this.props.screenProps.favoris !== null && this.props.screenProps.favoris.length > 0) {
-			/*return(
-				<ScrollView>
-					{this.renderQuotes()}
-				</ScrollView>
-			)*/
 			const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 			return(
 				<ListView
