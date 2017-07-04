@@ -50,8 +50,8 @@ export default class App extends Component {
 
   refresh = async () => {
     try {
-      let value = await AsyncStorage.getItem("quoteDB");
-      let listOfTasks = (await JSON.parse(value)) || [];
+      const value = await AsyncStorage.getItem("quoteDB");
+      const listOfTasks = (await JSON.parse(value)) || [];
       if (value !== null) {
         // if favoris exist
         console.log("value: " + typeof listOfTasks);

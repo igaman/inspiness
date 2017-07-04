@@ -10,7 +10,14 @@ const urlApi = 'http://polarfront.fr/wp-json/wp/v2/quotes';
 
 
 class Home extends Component {
-	state = { quotes : [], isLoading: true };
+
+	constructor (props) {
+		super(props);
+		this.state = {
+			quotes : [],
+			isLoading: true 
+		}
+	}
 
 	componentWillMount() {
 		axios.get(urlApi)

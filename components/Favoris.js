@@ -33,7 +33,6 @@ class Favoris extends Component {
 	}
 
 	render() {
-		console.log(this.props.screenProps.favoris, "favoris mean")
 		return (
 			<View>
 				{this.loadText()}
