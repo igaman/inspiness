@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Image, AsyncStorage} from 'react-native';
+import { View, Image, AsyncStorage, TouchableOpacity} from 'react-native';
 import { Icon, Text, Button} from 'native-base';
 import style from './../style/Styles';
 
@@ -91,14 +91,9 @@ const quoteDetail = ({quote}) =>  {
 			<Text style={style.quoteTitle}>{quote.title.rendered}</Text>
 			<Text style={style.quoteText}>{quotePlainText(quote.content.rendered)}</Text>
 			<View style={{ marginTop: 10, alignItems: 'center'}}>
-				<Button
-				rounded
-				dark
-				style={{ margin: 20}}
-				onPress={() => saveQuote(quote)}
-				>
-					<Text>SAVE</Text>
-				</Button>
+				<TouchableOpacity onPress={() => saveQuote(quote)}>
+					<Image source={require('./icons/like.png')} style={style.saveIcon } />
+				</TouchableOpacity>
 			</View>
 			<Text style={style.quoteAuthor}> ─ {quote.author} ─ </Text>
 		</View>

@@ -50,6 +50,20 @@ export default  {
 	favorisContent: {
 		flex: 4
 	},
+	saveIcon: {
+		width: 50,
+		height: 50,
+		marginBottom: 20,
+	},
+	deleteIcon: {
+		width: 40,
+		height: 40,
+		marginBottom: 10,
+		marginLeft: 5,
+		borderWidth: 1,
+		borderColor: '#FF520F',
+		borderRadius: 100
+	},
 	thumbnail: {
 		width: 150,
 		height: 150,

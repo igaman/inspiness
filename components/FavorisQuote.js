@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, AsyncStorage, Alert } from 'react-native';
+import { View, Image, AsyncStorage, Alert, TouchableOpacity } from 'react-native';
 import { Icon, Text, Button} from 'native-base';
 import style from './../style/Styles';
 
@@ -35,7 +35,7 @@ export default class FavorisQuote extends Component {
 			'Attention',
 			'Êtes-vous sûr de vouloir supprimer ?',
 			[
-			{text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+			{text: 'Annuler', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
 			{text: 'OK', onPress: () => this.deleteQuote(quote)},
 			]
 		)
@@ -47,9 +47,9 @@ export default class FavorisQuote extends Component {
 			<View id={id} style={style.favorisQuote}>
 				<View style={style.favorisImage}>
 					<Image source={{ uri: this.quoteImage(thumbnail) }} style={style.thumbnailMini}/>
-					<Button style={style.favorisButton} rounded dark onPress={() => this.attention(this.props.quote)}>
-						<Text>D</Text>
-					</Button>
+					<TouchableOpacity style={style.favorisButton} rounded dark onPress={() => this.attention(this.props.quote)}>
+						<Image source={require('./icons/delete.png')} style={style.deleteIcon}/>
+					</TouchableOpacity>
 				</View>
 				<View style={style.favorisContent}>
 					<Text style={style.quoteTextMini}>{text}</Text>

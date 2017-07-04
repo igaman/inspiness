@@ -23,11 +23,11 @@ class Favoris extends Component {
 			);
 		} else if(this.props.screenProps.favoris !== null && this.props.screenProps.favoris.length < 1) {
 			return(
-				<Text>You have not favorites</Text>
+				<Text style={style.quoteTextMini}>You have not favorites</Text>
 			);
 		} else {
 			return(
-				<Text>You have not favorites</Text>
+				<Text style={style.quoteTextMini}>You have not favorites</Text>
 			);
 		}
 	}
