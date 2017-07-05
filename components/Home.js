@@ -4,6 +4,7 @@ import { Button, Icon, Text } from 'native-base';
 import axios from 'axios';
 import style from './../style/Styles';
 import QuoteDetail from './QuoteDetail';
+import moment from 'moment';
 
 const urlApi = 'http://polarfront.fr/wp-json/wp/v2/quotes';
 

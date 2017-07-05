@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Image, AsyncStorage, TouchableOpacity, Animated} from 'react-native';
+import { View, Image, AsyncStorage, TouchableOpacity} from 'react-native';
 import { Icon, Text, Button} from 'native-base';
 import style from './../style/Styles';
 

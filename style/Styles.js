@@ -13,7 +13,7 @@ export default  {
 		backgroundColor: '#fff',
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: 50,
+		height: 70,
 		shadowColor: '#fff',
 		shadowOffset: { width: 0, height: 0},
 		shadowOpacity: 0,
@@ -21,9 +21,16 @@ export default  {
 		position: 'relative'
 	},
 	headerText: {
+		paddingBottom: 5,
+		alignItems: 'center',
 		color: '#FF520F',
 		fontFamily: 'Oswald-Regular',
 		fontSize: 20
+	},
+	dateText: {
+		fontFamily: 'Oswald-Regular',
+		color: '#FF520F',
+		fontSize: 16
 	},
 	quoteContainer: {
 		flex:1,
