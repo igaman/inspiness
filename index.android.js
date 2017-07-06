@@ -57,7 +57,7 @@ export default class App extends Component {
         console.log("value: " + typeof listOfTasks);
         this.setState({ favoris: listOfTasks });
       }
-      console.log("working", this.state);
+      //console.log("working", this.state);
     } catch (error) {
       console.log(error);
     }

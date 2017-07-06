@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>quote sort</title>
+</head>
+<body>
+	quote sorting
+</body>
+<script type="text/javascript">
+const quote = [{theme: 'spirituality'}, {theme: 'politic'}, {theme: 'military'},  {theme: 'tech'}];
+const themeOrder = ['tech','politic','military','spirituality'];
+
+const newOrder = quote.sort((x,y) => themeOrder.indexOf(x.theme) > themeOrder.indexOf(y.theme) ? 1 : -1)
+
+console.log(newOrder);
+
+</script>
+</html>

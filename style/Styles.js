@@ -20,12 +20,13 @@ export default  {
 		elevation: 0,
 		position: 'relative'
 	},
-	headerText: {
+	headerLogo: {
 		paddingBottom: 5,
 		alignItems: 'center',
-		color: '#FF520F',
-		fontFamily: 'Oswald-Regular',
-		fontSize: 20
+	},
+	logo: {
+		width: 120,
+		height: 25,
 	},
 	dateText: {
 		fontFamily: 'Oswald-Regular',

@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { Text } from 'native-base';
 import style from './../style/Styles';
 import moment from 'moment';
@@ -15,9 +15,9 @@ const capitalizeFirstLetter = (string) => {
 
 const Header = () => (
 	<View style={style.header} >
-		<Text style={style.headerText}>
-			INSPINESS
-		</Text>
+		<View style={style.headerLogo}>
+			<Image source={require('./icons/logo.png')} style={style.logo} />
+		</View>
 		<Text style={style.dateText}>
 			{capitalizeFirstLetter(localDate)}
 		</Text>

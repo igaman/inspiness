@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Image, ScrollView, ActivityIndicator } from 'react-native';
+import { View, ScrollView, ActivityIndicator } from 'react-native';
 import { Button, Icon, Text } from 'native-base';
 import axios from 'axios';
 import style from './../style/Styles';
@@ -20,11 +20,25 @@ class Home extends Component {
 		}
 	}
 
+	searchAndSort(quote) {
+		const year = moment().format('YYYY');
+		const day = moment().format('D');
+		const month = (Number(moment().format('M')) - 1).toString();
+		//diff 7200 milliseconds with the json
+		let now = Number(new Date(year,month,day).getTime().toString().slice(0, -3)) + 7200;
+		now = now.toString();
+		//console.log('now ', now);
+		const todayQuote = quote.filter(quote => quote.date_publish === now);
+		const themeOrder = ['tech','politic','military','spirituality'];
+		const newOrder = todayQuote.sort((x,y) => themeOrder.indexOf(x.theme) > themeOrder.indexOf(y.theme) ? 1 : -1);
+		this.setState({quotes: newOrder, isLoading: false });
+	}
+
 	componentWillMount() {
 		axios.get(urlApi)
 			.then((response) => {
 				console.log(response.data);
-				this.setState({quotes: response.data, isLoading: false });
+				this.searchAndSort(response.data);
 			})
 			.catch((e) => {
 				console.log(e);
