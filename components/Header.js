@@ -5,23 +5,36 @@ import style from './../style/Styles';
 import moment from 'moment';
 import {fr} from '../node_modules/moment/locale/fr';
 
-const now = moment();
 
-const localDate = now.locale('fr').format('dddd DD MMMM YYYY').toString();
 
-const capitalizeFirstLetter = (string) => {
-	return string.charAt(0).toUpperCase() + string.slice(1);
+class Header extends Component {
+	constructor (props) {
+		super(props);
+		this.state = {
+			appState: this.props.screenProps.appState
+		}
+	}
+
+	capitalizeFirstLetter = (string) => {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+
+	localDate = () => {
+		return moment().locale('fr').format('dddd DD MMMM YYYY').toString();
+	} 
+
+	render() {
+		return (
+			<View style={style.header} >
+				<View style={style.headerLogo}>
+					<Image source={require('./icons/logo.png')} style={style.logo} />
+				</View>
+				<Text style={style.dateText}>
+					{this.capitalizeFirstLetter(this.localDate())}
+				</Text>
+			</View>
+		);
+	}
 }
-
-const Header = () => (
-	<View style={style.header} >
-		<View style={style.headerLogo}>
-			<Image source={require('./icons/logo.png')} style={style.logo} />
-		</View>
-		<Text style={style.dateText}>
-			{capitalizeFirstLetter(localDate)}
-		</Text>
-	</View>
-);
 
 export default Header;

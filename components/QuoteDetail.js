@@ -59,7 +59,7 @@ const saveQuote = async(quote) => {
 		if (quoteStore !== null){
 			// We have data merge object!!
 			quoteStore = JSON.parse(quoteStore);
-			console.log('quoteDB have data !');
+			console.log('quoteDB have data ! '+ quoteStore);
 			const checkQuote = quoteStore.find(quoteDB => quoteDB.id === quote.id);
 			console.log('checkQuote type'+checkQuote);
 			if(checkQuote === undefined) {

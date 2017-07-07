@@ -16,7 +16,8 @@ class Home extends Component {
 		super(props);
 		this.state = {
 			quotes : [],
-			isLoading: true 
+			isLoading: true,
+
 		}
 	}
 
@@ -35,9 +36,15 @@ class Home extends Component {
 	}
 
 	componentWillMount() {
+		console.log('will mount');
+		this.fetchData();
+	}
+
+	fetchData() {
+		console.log('fetchData');
 		axios.get(urlApi)
 			.then((response) => {
-				console.log(response.data);
+				console.log('data:' +response.data);
 				this.searchAndSort(response.data);
 			})
 			.catch((e) => {
@@ -62,12 +69,22 @@ class Home extends Component {
 	}
 
 	renderQuotes() {
-		return this.state.quotes.map((quote) => {
+		if(this.props.screenProps.foreground && this.props.screenProps.appState !== 'active') {
+			this.fetchData();
+			return this.state.quotes.map((quote) => {
 				return(
 					<QuoteDetail key={quote.id} quote={quote}/>
 				);
-			})
+			});
+		} else {
+			return this.state.quotes.map((quote) => {
+				return(
+					<QuoteDetail key={quote.id} quote={quote}/>
+				);
+			});
+		}
 	}
+
 
 	render() {
 		return (
