@@ -110,6 +110,12 @@ export default  {
 		fontSize:16,
 		marginBottom:20,
 	},
+	favTextMini: {
+		fontFamily: 'Oswald-Regular',
+		color:'#484848',
+		fontSize:16,
+		padding:20,
+	},
 	quoteAuthor: {
 		fontFamily: 'Oswald-Regular',
 		fontSize: 20,
