@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Check calendar</title>
+</head>
+<body>
+	<div id="root"></div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/fr.js"></script>
+	<script>
+		const rootDiv = document.getElementById('root');
+		const url = 'http://polarfront.fr/wp-json/wp/v2/quotes';
+
+		fetch(url)
+		.then(response => response.json())
+		.then((data) => {
+			console.log(data)
+			createTable(data);
+		})
+		.catch((e) => console.error(e));
+
+		function createTable(data) {
+			const tableHtml = data.map((elem) => {
+				const QuoteImage = (img) => {
+					const imageExtension = img.slice(-4);
+					return img.split(imageExtension)[0] +'-300x300'+ imageExtension;
+				}
+				return `<div>
+							<img src="${QuoteImage(elem.thumbnail)}" alt="${elem.author}" />
+							<h2>${elem.author}</h2>
+							<h3>${elem.title.rendered}</h3>
+							<p>${elem.content.rendered}</p>
+							<h4>Theme: ${elem.theme.toUpperCase()}</h4>
+						</div>`
+			}).join('');
+			//console.log(tableHtml);
+			root.innerHTML = tableHtml;
+		}
+	</script>
+</body>
+</html>
