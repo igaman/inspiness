@@ -55,12 +55,12 @@ const saveQuote = async(quote) => {
 
 	try {
 		//await AsyncStorage.setItem('quoteDB', null);
-		const quoteStore = await AsyncStorage.getItem('quoteDB');
+		let quoteStore = await AsyncStorage.getItem('quoteDB');
 		if (quoteStore !== null){
 			// We have data merge object!!
 			quoteStore = JSON.parse(quoteStore);
 			console.log('quoteDB have data ! '+ quoteStore);
-			const checkQuote = quoteStore.find(quoteDB => quoteDB.id === quote.id);
+			let checkQuote = quoteStore.find(quoteDB => quoteDB.id === quote.id);
 			console.log('checkQuote type'+checkQuote);
 			if(checkQuote === undefined) {
 				//the quote is not in favoris, so Add it in favoris
