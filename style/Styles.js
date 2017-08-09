@@ -124,6 +124,7 @@ export default  {
 		color:'#484848',
 		fontSize:16,
 		padding:20,
+		textAlign: 'center',
 	},
 	quoteAuthor: {
 		fontFamily: 'Oswald-Regular',

@@ -43,27 +43,27 @@ class Favoris extends Component {
 		if(this.props.screenProps.favoris !== null && this.props.screenProps.favoris.length > 0) {
 			const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 			return(
-				<View>
-					<ListView
-					dataSource={ds.cloneWithRows(this.props.screenProps.favoris)}
-					renderRow={(data) => <FavorisQuote quote={data} screenProps={{refresh: this.props.screenProps.refresh}}/>}
-					/>
+				<ScrollView>
 					<View style={style.pubContainer}>
 						<TouchableOpacity onPress={() => Linking.openURL(this.state.pubLink)}>
 							<Image source={{ uri: this.state.pubImg }} style={style.pub} />
 						</TouchableOpacity>
 					</View>
-				</View>
+					<ListView
+					dataSource={ds.cloneWithRows(this.props.screenProps.favoris.reverse())}
+					renderRow={(data) => <FavorisQuote quote={data} screenProps={{refresh: this.props.screenProps.refresh}}/>}
+					/>
+				</ScrollView>
 			);
 		} else if(this.props.screenProps.favoris !== null && this.props.screenProps.favoris.length < 1) {
 			return(
 				<View>
-					<Text style={style.favTextMini}>Vous n'avez pas de favoris</Text>
 					<View style={style.pubContainer}>
 						<TouchableOpacity onPress={() => Linking.openURL(this.state.pubLink)}>
 							<Image source={{ uri: this.state.pubImg }} style={style.pub} />
 						</TouchableOpacity>
 					</View>
+					<Text style={style.favTextMini}>Vous n'avez pas de favoris</Text>
 				</View>
 			);
 		} else {
