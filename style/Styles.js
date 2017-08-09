@@ -28,6 +28,15 @@ export default  {
 		width: 120,
 		height: 25,
 	},
+	pubContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	pub: {
+		marginTop: 20,
+		width: 234,
+		height: 60,
+	},
 	dateText: {
 		fontFamily: 'Oswald-Regular',
 		color: '#FF520F',

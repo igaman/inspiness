@@ -86,9 +86,6 @@ export default class App extends Component {
 			<View style={{ flex: 1 }}>
 				<StatusBar backgroundColor="#FFF" barStyle="dark-content" />
 				<Header screenProps={{ appState: this.state.appState}}/>
-				<View>
-					<Text>Current state is: {this.state.appState}</Text>
-				</View>
 				<Tabs
 					onNavigationStateChange={(prevState, currentState) => {
 						this.refresh();

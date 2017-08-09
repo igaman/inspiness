@@ -8,55 +8,69 @@
 </head>
 <body>
 	<div id="root" class="container-fluid">
-		<div class="row">
-		</div>
+		<h1>Check Calendar</h1>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/fr.js"></script>
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
-			const rootDiv = document.getElementById('root').getElementsByClassName('row');
+			const rootDiv = document.querySelector('.row');
 			const url = 'http://polarfront.fr/wp-json/wp/v2/quotes';
+			const daysLoop = 3;
+			const numberQuotes = 4;
 
 			fetch(url)
 			.then(response => response.json())
 			.then((data) => {
-				console.log(data);
-				createTable(searchAndSort(data));
+				//console.log(data);
+				for(var i = 0 ; i < daysLoop; i++) {
+					createTable(searchAndSort(data, i), i);
+				}
 			})
 			.catch((e) => console.error(e));
 
-			function searchAndSort(quote) {
+			function searchAndSort(quote, numDay) {
 				const year = moment().format('YYYY');
-				const day = moment().format('D');
+				//const day = moment().format('D');
+				const day = moment().add(numDay,'days').format('D');
 				const month = (Number(moment().format('M')) - 1).toString();
 				//diff 7200 milliseconds with the json
 				let now = Number(new Date(year,month,day).getTime().toString().slice(0, -3)) + 7200;
 				now = now.toString();
-				//console.log('now ', now);
 				const todayQuote = quote.filter(quote => quote.date_publish === now);
 				const themeOrder = ['tech','politic','military','spirituality'];
 				return newOrder = todayQuote.sort((x,y) => themeOrder.indexOf(x.theme) > themeOrder.indexOf(y.theme) ? 1 : -1);
 			}
 
-			function createTable(data) {
-				let tableHtml = `<h2>${moment().format('dddd DD MMMM YYYY')}</h2>`
+			function createTable(data, numDay) {
+				let tableHtml = `<div class="line"><h2>${moment().add(numDay,'days').format('dddd DD MMMM YYYY')}</h2>`;
 				tableHtml += data.map((elem) => {
 					const QuoteImage = (img) => {
 						const imageExtension = img.slice(-4);
 						return img.split(imageExtension)[0] +'-300x300'+ imageExtension;
 					}
-					return `<div class="col-md-3">
+					return `<div class="w50 ${elem.theme}">
 								<h3><img class="image-quote" src="${QuoteImage(elem.thumbnail)}" alt="${elem.author}" /><b> ${elem.author}</b></h3>
 								<h4><b>Title: </b>${elem.title.rendered}</h4>
 								<p>${elem.content.rendered}</p>
 								<h4><b>Theme: </b>${elem.theme.toUpperCase()}</h4>
 							</div>`
 				}).join('');
+				if(data.length < numberQuotes && data.length !== 0) {
+					const result = numberQuotes - data.length;
+					const warningHTML = `<div class="alert alert-warning"><strong>Attention!</strong> il manque ${result} citation(s) !</div>`;
+					tableHtml += warningHTML;
+				} else if (data.length === 0) {
+					const errorHTML = '<div class="alert alert-danger"><strong>Danger!</strong> Il n\'y a pas de citations !</div>';
+					tableHtml += errorHTML;
+				} else {
+					const succesHTML = '<div class="alert alert-succes"><strong>Bravo!</strong> It rocks Baby !</div>';
+					tableHtml += succesHTML;
+				}
+				tableHtml += '</div>';
 				//console.log(tableHtml);
-				root.innerHTML = tableHtml;
+				root.innerHTML += tableHtml;
 			}
-			//return moment().add(1,'days').format('YYYY-MM-DD');
 		});
 	</script>
 </body>

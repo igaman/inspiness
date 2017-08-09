@@ -1,6 +1,11 @@
-.image-quote {
-	width: 50px;
-	height: auto;
+h1  {
+	text-align: center;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #000;
+}
+
+h2 {
+	clear: both;
 }
 
 h3 {
@@ -9,4 +14,55 @@ h3 {
 
 h4 {
 	font-size: 14px;
+}
+
+.image-quote {
+	width: 50px;
+	height: auto;
+	border-radius: 50%;
+}
+
+.line {
+	margin-bottom: 40px;
+}
+
+.line .w50:nth-child(2n+2) {
+	clear: both;
+}
+
+.w50 {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+	.w50 {
+		float: left;
+		width: 50%;
+	}
+}
+
+.alert {
+	clear: both;
+}
+
+.spirituality {
+	background: #663d5b;
+	color: #fff;
+}
+
+.tech {
+	background: #0FBAB7;
+	color: #fff;
+}
+
+.military {
+	background: #FF520F;
+	color: #fff;
+}
+
+.politic {
+	background: #ffd40e;
+	color: #fff;
 }

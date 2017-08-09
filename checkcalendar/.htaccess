@@ -1,0 +1,5 @@
+AuthName "Admin"
+AuthGroupFile /dev/null
+AuthUserFile "/home/polarfrodt/www/checkcalendar/.htpasswd"
+AuthType Basic
+Require valid-user
