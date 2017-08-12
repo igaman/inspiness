@@ -107,6 +107,14 @@ function register_custom_fields(){
     );
 
     register_rest_field(
+        'quotes',
+        'quote_img',
+        array(
+            'get_callback' => 'show_fields'
+        )
+    );
+
+    register_rest_field(
         'pub',
         'pub_link',
         array(

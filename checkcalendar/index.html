@@ -15,7 +15,8 @@
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
 			const rootDiv = document.querySelector('.row');
-			const url = 'http://polarfront.fr/wp-json/wp/v2/quotes';
+			const baseUrl = 'http://polarfront.fr';
+			const url = `${baseUrl}/wp-json/wp/v2/quotes`;
 			const daysLoop = 3;
 			const numberQuotes = 4;
 
@@ -44,7 +45,11 @@
 
 			function createTable(data, numDay) {
 				let tableHtml = `<div class="line"><h2>${moment().add(numDay,'days').format('dddd DD MMMM YYYY')}</h2>`;
+				let imgGen = '';
+				let imgGenLink;
+				let author;
 				tableHtml += data.map((elem) => {
+					author = elem.author;
 					const QuoteImage = (img) => {
 						const imageExtension = img.slice(-4);
 						return img.split(imageExtension)[0] +'-300x300'+ imageExtension;
@@ -53,9 +58,13 @@
 								<h3><img class="image-quote" src="${QuoteImage(elem.thumbnail)}" alt="${elem.author}" /><b> ${elem.author}</b></h3>
 								<h4><b>Title: </b>${elem.title.rendered}</h4>
 								<p>${elem.content.rendered}</p>
+								<hr />
 								<h4><b>Theme: </b>${elem.theme.toUpperCase()}</h4>
+								<h4><b>Img Generated: <a class="white-link" href="${elem.quote_img.length ? 'elem.quote_img' : '#' }" target="${elem.quote_img.length ? '_blank' : '_self' }"> ${elem.quote_img.length ? 'LINK' : 'NONE' }</a></b></h4>
+								<h4><b>Modify content: <a target="_blank" class="white-link" href="${baseUrl}/wp-admin/post.php?post=${elem.id}&action=edit">LINK</a></b></h4>
 							</div>`
 				}).join('');
+
 				if(data.length < numberQuotes && data.length !== 0) {
 					const result = numberQuotes - data.length;
 					const warningHTML = `<div class="alert alert-warning"><strong>Attention!</strong> il manque ${result} citation(s) !</div>`;
@@ -67,6 +76,13 @@
 					const succesHTML = '<div class="alert alert-success"><strong>Bravo!</strong> It rocks Baby !</div>';
 					tableHtml += succesHTML;
 				}
+
+				tableHtml += data.map((elem) => {
+					if(elem.quote_img.length < 1) {
+						return `<div class="alert alert-warning"><strong>Attention!</strong> Il manque l\'Image Générée ! pour <strong>${elem.author}</strong></div>`
+					}
+				}).join('');
+
 				tableHtml += '</div>';
 				//console.log(tableHtml);
 				root.innerHTML += tableHtml;
