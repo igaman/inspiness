@@ -45,10 +45,10 @@ export default  {
 	quoteContainer: {
 		flex:1,
 		flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
 		padding: 10,
-		paddingTop: 30,
+		paddingTop: 40,
 	},
 	favorisQuote: {
 		margin: 0,
@@ -129,7 +129,7 @@ export default  {
 	quoteAuthor: {
 		fontFamily: 'Oswald-Regular',
 		fontSize: 20,
-		marginBottom: 60,
+		marginBottom: 30,
 		color: '#FFFFFF',
 		textShadowColor: '#616161',
 		textShadowOffset:{ width: 1, height: 1},

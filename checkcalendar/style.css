@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
+
 h1  {
 	text-align: center;
 	padding-bottom: 20px;
@@ -16,10 +18,43 @@ h4 {
 	font-size: 14px;
 }
 
+.quote-view {
+	position: relative;
+	padding: 40px;
+	text-align: center;
+	margin: 0 auto;
+}
+.quote-view .logo {
+	position: absolute;
+	width: 100px;
+	bottom: 15px;
+	right: 20px;
+}
+
+.quote-view p {
+	font-family: 'Oswald', sans-serif;
+	font-weight: 700;
+	font-style: italic;
+	font-size: 38px;
+	text-align: center;
+	line-height: 48px;
+	margin:0 auto 30px;
+	color: #FFFFFF;
+	text-shadow: 1px 1px 2px #616161;
+}
+
+.quote-view p.quote-author {
+	font-size: 30px;
+	font-weight: 400;
+	font-style: normal;
+	margin-bottom: 30px;
+}
+
 .image-quote {
-	width: 50px;
-	height: auto;
-	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+	border-radius: 100%;
+	margin-bottom: 30px;
 }
 
 .line {
@@ -32,7 +67,7 @@ h4 {
 
 .w50 {
 	width: 100%;
-	padding: 10px;
+	max-width: 700px;
 	margin-bottom: 20px;
 }
 
@@ -47,22 +82,22 @@ h4 {
 	clear: both;
 }
 
-.spirituality {
+.spirituality, .spirituality .quote-view {
 	background: #663d5b;
 	color: #fff;
 }
 
-.tech {
+.tech, .tech .quote-view {
 	background: #0FBAB7;
 	color: #fff;
 }
 
-.military {
+.military, .military .quote-view {
 	background: #FF520F;
 	color: #fff;
 }
 
-.politic {
+.politic, .politic .quote-view {
 	background: #ffd40e;
 	color: #fff;
 }
@@ -77,4 +112,8 @@ h4 {
 	padding: 5px 10px;
 	border-radius: 5px;
 	border: none;
+}
+
+.quote-control {
+	padding: 10px;
 }

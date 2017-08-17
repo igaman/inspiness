@@ -19,7 +19,7 @@
 			const rootDiv = document.querySelector('.row');
 			const baseUrl = 'http://polarfront.fr';
 			const url = `${baseUrl}/wp-json/wp/v2/quotes`;
-			const daysLoop = 3;
+			const daysLoop = 30;
 			const numberQuotes = 4;
 
 			fetch(url)
@@ -57,15 +57,22 @@
 						return img.split(imageExtension)[0] +'-300x300'+ imageExtension;
 					}
 					return `<div id="${elem.id}" class="w50 ${elem.theme}">
-								<h3><img class="image-quote" src="${QuoteImage(elem.thumbnail)}" alt="${elem.author}" /><b> ${elem.author}</b></h3>
-								<h4><b>Title: </b>${elem.title.rendered}</h4>
-								<p>${elem.content.rendered}</p>
+								<div class="quote-view">
+									<img class="image-quote" src="${QuoteImage(elem.thumbnail)}" alt="${elem.author}" />
+									${elem.content.rendered}
+									<p class="quote-author">
+										─ ${elem.author} ─
+									</p>
+									<img class="logo" src="celesteam.png" alt="" />
+								</div>
 								<hr />
-								<h4><b>Theme: </b>${elem.theme.toUpperCase()}</h4>
-								<h4><b>Img Generated: <a class="white-link" href="${elem.quote_img.length ? 'elem.quote_img' : '#' }" target="${elem.quote_img.length ? '_blank' : '_self' }"> ${elem.quote_img.length ? 'LINK' : 'NONE' }</a></b></h4>
-								<h4><b>Modify content: <a target="_blank" class="white-link" href="${baseUrl}/wp-admin/post.php?post=${elem.id}&action=edit">LINK</a></b></h4>
-								<br />
-								<button class="generate-btn">Generate Image</button>
+								<div class="quote-control">
+									<h4><b>Theme: </b>${elem.theme.toUpperCase()}</h4>
+									<h4><b>Img Generated: <a class="white-link" href="${elem.quote_img.length ? 'elem.quote_img' : '#' }" target="${elem.quote_img.length ? '_blank' : '_self' }"> ${elem.quote_img.length ? 'LINK' : 'NONE' }</a></b></h4>
+									<h4><b>Modify content: <a target="_blank" class="white-link" href="${baseUrl}/wp-admin/post.php?post=${elem.id}&action=edit">LINK</a></b></h4>
+									<br />
+									<button class="generate-btn">Generate Image</button>
+								</div>
 							</div>`
 				}).join('');
 
@@ -96,22 +103,19 @@
 
 			//generateBtn.forEach(btn => btn.addEventListener('click', generateImg));
 			document.querySelector('body').addEventListener('click', function() {
-				console.log(event.target.className);
 				const elem = event.target;
 				if(elem.className === 'generate-btn') {
-					console.log('bim');
-					const parentDiv = elem.parentNode;
-					console.log(parentDiv.className);
-					domtoimage.toBlob(parentDiv)
-					.then(function (blob) {
-						window.saveAs(blob, 'citation-'+parentDiv.id+'.jpg');
+					const parentDiv = elem.parentNode.parentNode;
+					const quoteView = elem.parentNode.parentNode.firstElementChild;
+					domtoimage.toJpeg(quoteView, {quality: 1})
+					.then(function (dataUrl) {
+						const link = document.createElement('a');
+						link.download = `citation-${parentDiv.id}.jpeg`;
+						link.href = dataUrl;
+						link.click();
 					});
 				}
 			});
-
-			function generateImg() {
-				console.log('vim');
-			}
 		});
 	</script>
 </body>

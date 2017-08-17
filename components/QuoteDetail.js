@@ -88,7 +88,6 @@ const quoteDetail = ({quote}) =>  {
 	return(
 		<View style={[ style.quoteContainer , themeStyle(quote.theme)]}>
 			<Image source={{ uri: QuoteImage(quote.thumbnail) }} style={style.thumbnail}/>
-			<Text style={style.quoteTitle}>{quote.title.rendered}</Text>
 			<Text style={style.quoteText}>{quotePlainText(quote.content.rendered)}</Text>
 			<View style={{ marginTop: 10, alignItems: 'center'}}>
 				<TouchableOpacity onPress={() => saveQuote(quote)}>
