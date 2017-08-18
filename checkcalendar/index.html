@@ -19,30 +19,56 @@
 			const rootDiv = document.querySelector('.row');
 			const baseUrl = 'http://polarfront.fr';
 			const url = `${baseUrl}/wp-json/wp/v2/quotes`;
-			const daysLoop = 30;
 			const numberQuotes = 4;
+			const gap = 0 || getParameterByName('gap');
+			const daysLoop =  30 || getParameterByName('loop');
+			let yearNow = Number(moment().format('YYYY'))
+			let monthNow = Number(moment().format('M'));
+			let incMonth = 0;
+			let incYear = 0;
 
 			fetch(url)
 			.then(response => response.json())
 			.then((data) => {
 				//console.log(data);
-				for(var i = 0 ; i < daysLoop; i++) {
+				for(var i = gap ; i < daysLoop + gap; i++) {
 					createTable(searchAndSort(data, i), i);
 				}
 			})
 			.catch((e) => console.error(e));
 
 			function searchAndSort(quote, numDay) {
-				const year = moment().format('YYYY');
-				//const day = moment().format('D');
+				const nextMonth = Number(moment().add(numDay,'days').format('M'));
+				const nextYear = Number(moment().add(numDay,'days').format('YYYY'));
+				if (monthNow !== nextMonth) {
+					monthNow = nextMonth;
+					incMonth ++;
+				}
+				if (yearNow !== nextYear) {
+					yearNow = nextYear;
+					incYear ++;
+				}
+				//problem with numDAy month years
+				const year = moment().add(incYear, 'Y').format('YYYY');
 				const day = moment().add(numDay,'days').format('D');
-				const month = (Number(moment().format('M')) - 1).toString();
+				const month = (Number(moment().add(incMonth, 'M').format('M')) - 1).toString();
+
 				//diff 7200 milliseconds with the json
 				let now = Number(new Date(year,month,day).getTime().toString().slice(0, -3)) + 7200;
 				now = now.toString();
 				const todayQuote = quote.filter(quote => quote.date_publish === now);
 				const themeOrder = ['tech','politic','military','spirituality'];
 				return newOrder = todayQuote.sort((x,y) => themeOrder.indexOf(x.theme) > themeOrder.indexOf(y.theme) ? 1 : -1);
+			}
+
+			function getParameterByName(name, url) {
+				if (!url) url = window.location.href;
+				name = name.replace(/[\[\]]/g, "\\$&");
+				var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+				    results = regex.exec(url);
+				if (!results) return null;
+				if (!results[2]) return '';
+				return decodeURIComponent(results[2].replace(/\+/g, " "));
 			}
 
 			function createTable(data, numDay) {
