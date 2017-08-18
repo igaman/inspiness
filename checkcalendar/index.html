@@ -20,18 +20,22 @@
 			const baseUrl = 'http://polarfront.fr';
 			const url = `${baseUrl}/wp-json/wp/v2/quotes`;
 			const numberQuotes = 4;
-			const gap = 0 || getParameterByName('gap');
-			const daysLoop =  30 || getParameterByName('loop');
+			let gap = getParameterByName('gap') || 0 ;
+			gap = Number(gap);
+			let daysLoop =  getParameterByName('loop') || 30;
+			daysLoop = Number(daysLoop)+ gap
 			let yearNow = Number(moment().format('YYYY'))
 			let monthNow = Number(moment().format('M'));
 			let incMonth = 0;
 			let incYear = 0;
 
+			console.log(daysLoop);
+
 			fetch(url)
 			.then(response => response.json())
 			.then((data) => {
 				//console.log(data);
-				for(var i = gap ; i < daysLoop + gap; i++) {
+				for(var i = gap ; i < daysLoop; i++) {
 					createTable(searchAndSort(data, i), i);
 				}
 			})
