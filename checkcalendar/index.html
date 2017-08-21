@@ -96,7 +96,7 @@
 								<hr />
 								<div class="quote-control">
 									<h4><b>Theme: </b>${elem.theme.toUpperCase()}</h4>
-									<h4><b>Img Generated: <a class="white-link" href="${elem.quote_img.length ? 'elem.quote_img' : '#' }" target="${elem.quote_img.length ? '_blank' : '_self' }"> ${elem.quote_img.length ? 'LINK' : 'NONE' }</a></b></h4>
+									<h4><b>Img Generated: <a class="white-link" href="${elem.quote_img.length ? elem.quote_img : '#' }" target="${elem.quote_img.length ? '_blank' : '_self' }"> ${elem.quote_img.length ? 'LINK' : 'NONE' }</a></b></h4>
 									<h4><b>Modify content: <a target="_blank" class="white-link" href="${baseUrl}/wp-admin/post.php?post=${elem.id}&action=edit">LINK</a></b></h4>
 									<br />
 									<button class="generate-btn">Generate Image</button>
