@@ -129,6 +129,14 @@ function register_custom_fields(){
             'get_callback' => 'show_fields'
         )
     );
+
+    register_rest_field(
+        'pub',
+        'pub_display',
+        array(
+            'get_callback' => 'show_fields'
+        )
+    );
 }
 
 function show_fields($object, $field_name, $request){

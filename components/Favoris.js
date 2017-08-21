@@ -6,7 +6,7 @@ import FavorisQuote from './FavorisQuote';
 import axios from 'axios';
 
 const urlPub = 'http://polarfront.fr/wp-json/wp/v2/pub';
-let pubLink, pubImg;
+let pubLink, pubImg, pubDisplay;
 
 class Favoris extends Component {
 	constructor (props) {
@@ -14,7 +14,8 @@ class Favoris extends Component {
 		this.state = {
 			favoris: null,
 			pubImg: null,
-			pubLink: null
+			pubLink: null,
+			pubDisplay: null
 		}
 	}
 
@@ -32,7 +33,9 @@ class Favoris extends Component {
 	generatePubAssets(pub) {
 		pubLink = pub.map( elem => elem.pub_link).toString();
 		pubImg = pub.map( elem => elem.pub_thumbnail).toString();
-		if(pubLink.length < 1 || pubLink.length < 1) {
+		pubDisplay = Number(pub.map( elem => elem.pub_display).toString());
+		console.log('pub ',pubDisplay);
+		if(pubLink.length < 1 && pubDisplay < 1 || pubImg.length < 1 && pubDisplay < 1) {
 			return;
 		} else {
 			this.setState({ pubLink: pubLink, pubImg: pubImg });
