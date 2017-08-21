@@ -67,6 +67,10 @@ export default  {
 	favorisContent: {
 		flex: 4
 	},
+	authorLine: {
+		flexDirection: 'row',
+		alignItems: 'center'
+	},
 	saveIcon: {
 		width: 50,
 		height: 50,
@@ -80,6 +84,13 @@ export default  {
 		borderWidth: 1,
 		borderColor: '#FF520F',
 		borderRadius: 100
+	},
+	shareIcon: {
+		width: 24,
+		height: 24,
+		marginBottom: 0,
+		marginLeft: 10,
+		backgroundColor: 'transparent'
 	},
 	thumbnail: {
 		width: 150,

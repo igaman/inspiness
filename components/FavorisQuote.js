@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, AsyncStorage, Alert, TouchableOpacity } from 'react-native';
+import { View, Image, AsyncStorage, Alert, TouchableOpacity, Linking } from 'react-native';
 import { Icon, Text, Button} from 'native-base';
 import style from './../style/Styles';
 
@@ -42,7 +42,7 @@ export default class FavorisQuote extends Component {
 	}
 
 	render(){
-		const {id, author, thumbnail, text} = this.props.quote;
+		const {id, author, thumbnail, text, quote_img} = this.props.quote;
 		return(
 			<View id={id} style={style.favorisQuote}>
 				<View style={style.favorisImage}>
@@ -53,7 +53,12 @@ export default class FavorisQuote extends Component {
 				</View>
 				<View style={style.favorisContent}>
 					<Text style={style.quoteTextMini}>{text}</Text>
-					<Text style={style.quoteAuthorMini}> ─ {author} ─ </Text>
+					<View style={style.authorLine}>
+						<Text style={style.quoteAuthorMini}> ─ {author} ─ </Text>
+						<TouchableOpacity style={style.shareButton} rounded dark onPress={() => Linking.openURL(quote_img)}>
+							<Image source={require('./icons/picture.png')} style={style.shareIcon}/>
+						</TouchableOpacity>
+					</View>
 				</View>
 			</View>
 		);

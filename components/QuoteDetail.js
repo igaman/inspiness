@@ -50,7 +50,8 @@ const saveQuote = async(quote) => {
 		thumbnail: quote.thumbnail,
 		title: quote.title.rendered,
 		text: quotePlainText(quote.content.rendered),
-		author: quote.author
+		author: quote.author,
+		quote_img: quote.quote_img
 	}];
 
 	try {
